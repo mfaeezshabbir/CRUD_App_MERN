@@ -1,6 +1,6 @@
 // ConfirmationDialog.tsx
 import React from "react";
-import { ConfirmationDialogProps } from "../types";
+import { ConfirmationDialogProps } from "../../utils/types";
 
 const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     message,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Student, StudentFormModalProps } from "../types";
+import { Student, StudentFormModalProps } from "../../utils/types";
 
 const StudentFormModal: React.FC<StudentFormModalProps> = ({
   student,
@@ -31,17 +31,48 @@ const StudentFormModal: React.FC<StudentFormModalProps> = ({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(formData);
-    onClose();
+    if (student) {
+      // Editing existing student
+      try {
+        await fetch(
+          `http://localhost:7777/api/editstudent/${formData.studentId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+        onSubmit(formData);
+        onClose();
+      } catch (error) {
+        console.error("Error updating student:", error);
+      }
+    } else {
+      // Adding new student
+      try {
+        await fetch(`http://localhost:7777/api/addstudent`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        onSubmit(formData);
+        onClose();
+      } catch (error) {
+        console.error("Error adding new student:", error);
+      }
+    }
   };
 
   return (
     <div>
       <h2>{student ? "Edit Student" : "Add Student"}</h2>
       <form onSubmit={handleSubmit}>
-        {/* Add form fields for student data */}
         <div>
           <label htmlFor="studentId">Student ID:</label>
           <input
@@ -88,7 +119,7 @@ const StudentFormModal: React.FC<StudentFormModalProps> = ({
             type="date"
             id="dateOfBirth"
             name="dateOfBirth"
-            value={formData.dateOfBirth.toISOString()}
+            value={formData.dateOfBirth.toISOString().split("T")[0]}
             onChange={handleChange}
           />
         </div>

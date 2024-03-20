@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Student } from "../types";
+import { Student } from "../../utils/types";
 import StudentFormModal from "../components/StudentForm";
 import ConfirmationDialog from "../components/Confirmation";
 
