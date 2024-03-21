@@ -1,4 +1,4 @@
-// src/routes/studentRoutes.ts
+// src/routes/student.routes.ts
 import express from "express";
 import {
   getAllStudents,
@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/students", getAllStudents);
 router.post("/addstudent", addStudent);
-router.delete("/deletestudents/:id", deleteStudent);
-router.put("/editstudents/:id", updateStudent);
+router.delete("/deletestudent/:id", deleteStudent);
+router.put("/editstudent/:id", updateStudent);
 
 export = router;
