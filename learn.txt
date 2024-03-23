@@ -1,0 +1,17 @@
+   
+
+   - What is MERN Stack?
+   - Install Node.js.
+   - Set up MongoDB.(Local or Cloud)
+   - Create project directory.
+   - Configure Express.js, React.js, and Node.js.
+   - Design MongoDB schema for student data.
+   - Define API endpoints.
+   - Implement CRUD operations in backend.
+   - Test CRUD operations.
+   - Set up React.js components.
+   - Implement forms for CRUD operations.
+   - Connect frontend to backend APIs.
+   - Implement MongoDB database and collections.
+   - use typescript
+   - Set up version control with Git.
